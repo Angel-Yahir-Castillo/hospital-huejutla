@@ -1,28 +1,28 @@
-import React, { useState } from 'react';
+import  { useState } from 'react';
 import './App.css';
 
 function App() {
-  const [weight, setWeight] = useState('');
-  const [height, setHeight] = useState('');
-  const [result, setResult] = useState(null);
+  const [weight, setWeight] = useState<number | string>('');
+  const [height, setHeight] = useState<number | string>('');
+  const [result, setResult] = useState<number | null>(null);
 
   const calculateIMC = () => {
     if (weight && height) {
-      const imc = (weight / (height * height)).toFixed(2);
+      const imc = Number(Number(weight) / (Number(height) * Number(height))).toFixed(2);
   
       let message = '';
   
-      if (imc < 18.5) {
+      if (Number(imc) < 18.5) {
         message = 'Tu IMC es bajo. Se recomienda consultar a un profesional de la salud.';
-      } else if (imc >= 18.5 && imc < 24.9) {
+      } else if (Number(imc) >= 18.5 && Number(imc) < 24.9) {
         message = 'Tu IMC es saludable. ¡Mantén un estilo de vida activo!';
-      } else if (imc >= 25 && imc < 29.9) {
+      } else if (Number(imc) >= 25 && Number(imc) < 29.9) {
         message = 'Tienes sobrepeso. Considera hacer ejercicio y llevar una dieta equilibrada.';
       } else {
         message = 'Tienes obesidad. Te recomendamos buscar asesoramiento médico y hacer cambios en tu estilo de vida.';
       }
   
-      setResult(imc);
+      setResult(Number(imc));
       alert(`Tu IMC es: ${imc}. ${message}`);
     }
   };
